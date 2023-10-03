@@ -1,0 +1,97 @@
+﻿@model Cart;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/JSFHGioHang/_LayoutGioHang.cshtml";
+    int orderTotal = Model != null ? Model.SubTotal + 20000 : 0;
+}
+
+<div class="cart-main-area ptb--100 bg__white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <form action="#">
+                    <div class="table-content table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="product-thumbnail">products</th>
+                                    <th class="product-name">name of products</th>
+                                    <th class="product-price">Price</th>
+                                    <th class="product-quantity">Quantity</th>
+                                    <th class="product-subtotal">Total</th>
+                                    <th class="product-remove">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model?.CartItems)
+                                {
+                                    <tr>
+                                        <td class="product-thumbnail"><a href="#"><img src="~/AnhSP/@item.Image" alt="product img" /></a></td>
+                                        <td class="product-name">
+                                            <a href="#">@item.ProductName</a>
+
+                                        </td>
+                                        <td class="product-price"><span class="amount">@(item.Price)VND</span></td>
+                                        <td class="product-quantity">
+                                            <input type="number" value="@item.Quantity" min="1" max="999" id="@item.Id" />
+                                        </td>
+                                        <td class="product-subtotal">@(item.SubTotal)VND</td>
+                                        <td class="product-remove"><a asp-action="DeleteCart" asp-route-id="@item.Id"><i class="icon-trash icons"></i></a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="buttons-cart--inner">
+                                <div class="buttons-cart">
+                                    <a asp-controller="home" asp-action="index">Continue Shopping</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="ht__coupon__code">
+                                <span>enter your discount code</span>
+                                <div class="coupon__box">
+                                    <input type="text" placeholder="">
+                                    <div class="ht__cp__btn">
+                                        <a href="#">enter</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12 smt-40 xmt-40">
+                            <div class="htc__cart__total">
+                                <h6>cart total</h6>
+                                <div class="cart__desk__list">
+                                    <ul class="cart__desc">
+                                        <li>cart total</li>
+                                        <li>shipping</li>
+                                    </ul>
+                                    <ul class="cart__price">
+                                        <li>@(Model.SubTotal)VND</li>
+                                        <li>20000VND</li>
+                                    </ul>
+                                </div>
+                                <div class="cart__total">
+                                    <span>order total</span>
+                                    <span>@(orderTotal)VND</span>
+                                </div>
+                                    <ul class="payment__btn">
+                                        <li class="active"><a asp-action="ClearCart">Mua Hàng</a></li>
+                                        <li><a asp-controller="home" asp-action="index">continue shopping</a></li>
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

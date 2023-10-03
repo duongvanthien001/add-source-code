@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/JSFHSanPham/_LayoutSanPham.cshtml";
+}
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<Product>
+@foreach (var item in Model)
+{
+    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
+        <div class="category">
+            <div class="ht__cat__thumb">
+                <a href="product-details.html">
+                    <img src="@Url.Content("../AnhSP/"+item.ProductPhoto)" alt="product images">
+                </a>
+            </div>
+            <div class="fr__hover__info">
+                <ul class="product__action">
+                    <li><a href="wishlist.html"><i class="icon-heart icons"></i></a></li>
+
+                    <li><a asp-controller="SanPham" asp-action="ChiTietSanPham" asp-route-masp="@item.ProductId"><i class="icon-handbag icons"></i></a>
+
+    </li>
+
+                    <li><a href="#"><i class="icon-shuffle icons"></i></a></li>
+                </ul>
+            </div>
+            <div class="fr__product__inner">
+                <h4><a asp-controller="SanPham" asp-action="ChiTietSanPham" asp-route-masp="@item.ProductId">@item.ProductName</a></h4>
+                <ul class="fr__pro__prize">
+                    <li class="old__prize">@(item.Price)VND</li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+<!-- Start Pagenation -->
+<div class="row">
+    <div class="col-xs-12">
+        <ul class="htc__pagenation">
+            @Html.PagedListPager(Model , page=>Url.Action("Index" , new{page=page}) )
+        </ul>
+    </div>
+</div>
+<!-- End Pagenation -->

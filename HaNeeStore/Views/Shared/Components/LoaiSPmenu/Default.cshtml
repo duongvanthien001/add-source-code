@@ -1,0 +1,11 @@
+﻿ @model IEnumerable<Category>
+<div class="htc__category">
+  <h4 class="title__line--4">Danh Mục</h4>
+     <ul class="ht__cat__list">
+        @foreach(var item in Model)
+        {
+            
+            <li><a asp-controller="SanPham" asp-action="SanPhamTheoLoai" asp-route-maloai="@item.CatId">@item.CatName</a></li>
+        }
+    </ul>
+</div>

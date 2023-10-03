@@ -1,0 +1,101 @@
+﻿@model HaNeeStore.Models.User;
+@{
+    Layout = "~/Views/JSFHSuaTT/_LayoutTT.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin Khách hàng</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* CSS nội tại (inline) để minh họa, bạn nên sử dụng một tệp CSS riêng biệt cho kiểu dáng */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .customer-info p {
+            margin: 5px 0;
+        }
+
+        .customer-info strong {
+            font-weight: bold;
+        }
+
+        .order-history table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .order-history th, .order-history td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .order-history th {
+            background-color: #f2f2f2;
+        }
+
+        .customer-info {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+            .customer-info h2 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+
+            .customer-info ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            .customer-info li {
+                margin-bottom: 10px;
+            }
+
+            .customer-info strong {
+                font-weight: bold;
+                margin-right: 10px;
+            }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thông tin Khách hàng</h1>
+
+        <div class="customer-info">
+            <h2>Thông tin cá nhân</h2>
+            <p><strong>Tên: @Model?.Name</strong> </p>
+            <p><strong>Email: @Model?.Email</strong> </p>
+            <p><strong>Điện thoại:@Model?.Phone</strong> </p>
+            <a asp-action="SuaThongTin" asp-route-tenTK="@Model.UserName">Thay đổi thông tin</a>
+        </div>
+    </div>
+</body>
+</html>
+
+

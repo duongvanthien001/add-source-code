@@ -1,0 +1,53 @@
+﻿@using HaNeeStore.Models;
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<User>
+@{
+    ViewData["Title"] = "DanhSachTaiKhoan";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<h2>Danh Sách Tài Khoản</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên
+            </th>
+            <th>
+               Email
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserName">Chỉnh Sửa</a> |
+                <a asp-action="XoaTaiKhoan" asp-route-tenTK="@item.UserName">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@Html.PagedListPager(Model , page=>Url.Action("danhsachtaikhoan" , new{page=page}),new
+X.PagedList.Web.Common.PagedListRenderOptions(){
+LiElementClasses = new List<String> {"page-item"},
+PageClasses = new List<String> {"page-link"}
+})

@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "DangNhap";
+    Layout = "~/Views/JSFHDangNhap/_LayoutDangNhap.cshtml";
+}
+
+
+
+@model User
+
+
+<div class="container">
+    <div class="title">
+
+        Đăng nhập
+        <div asp-validation-summary="All"></div>
+        <div class="content">
+            @using (Html.BeginForm("DangNhap", "Account", FormMethod.Post))
+            {
+
+
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Tên người dùng</span>
+                        @Html.TextBoxFor(x=>x.UserName,new{@class="", placeholder="Enter your username",required="required",autofocus="autofocus"})
+
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Mật khẩu</span>
+                        @Html.PasswordFor(x=>x.Password,new{@class="" ,placeholder="Enter your password"})
+
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-submit">Đăng Nhập</button>
+                    <a asp-action="DangKy" class="btn">Đăng Ký</a>
+                </div>
+            }
+
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
