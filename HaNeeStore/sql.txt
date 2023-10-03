@@ -1,0 +1,181 @@
+﻿USE [HaneeStore]
+GO
+/****** Object:  Table [dbo].[Category]    Script Date: 10/3/2023 11:12:12 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Category](
+	[CatID] [int] IDENTITY(1,1) NOT NULL,
+	[CatName] [nvarchar](max) NULL,
+ CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
+(
+	[CatID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Customer]    Script Date: 10/3/2023 11:12:12 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Customer](
+	[CustomerID] [int] IDENTITY(1,1) NOT NULL,
+	[CustomerName] [nvarchar](max) NULL,
+	[Birtday] [datetime] NULL,
+	[Email] [nvarchar](max) NULL,
+	[Phone] [nvarchar](max) NULL,
+	[Address] [nvarchar](max) NULL,
+	[UserName] [nchar](100) NULL,
+ CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED 
+(
+	[CustomerID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Order]    Script Date: 10/3/2023 11:12:12 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Order](
+	[OrderID] [int] IDENTITY(1,1) NOT NULL,
+	[OrderDate] [datetime] NULL,
+	[DeliveryDate] [datetime] NULL,
+	[Paymentmethod] [nvarchar](max) NULL,
+	[OrderStatus] [nvarchar](max) NULL,
+	[CustomerID] [int] NULL,
+ CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED 
+(
+	[OrderID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OrderDetail]    Script Date: 10/3/2023 11:12:12 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderDetail](
+	[OrderID] [int] NULL,
+	[ProductID] [int] NULL,
+	[Quantity] [int] NULL,
+	[Total] [int] NULL,
+	[Information] [nvarchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Posts]    Script Date: 10/3/2023 11:12:12 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Posts](
+	[PostID] [int] IDENTITY(1,1) NOT NULL,
+	[PostName] [nvarchar](max) NULL,
+	[Contents] [nvarchar](max) NULL,
+	[PostPhoto] [nvarchar](max) NULL,
+	[CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_Posts] PRIMARY KEY CLUSTERED 
+(
+	[PostID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Product]    Script Date: 10/3/2023 11:12:12 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Product](
+	[ProductID] [int] IDENTITY(1,1) NOT NULL,
+	[ProductName] [nvarchar](max) NULL,
+	[ShortDecs] [nvarchar](max) NULL,
+	[Description] [nvarchar](max) NULL,
+	[Size] [char](10) NULL,
+	[Price] [int] NULL,
+	[ProductPhoto] [nvarchar](max) NULL,
+	[CatID] [int] NULL,
+	[UnitsInStock] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Product] PRIMARY KEY CLUSTERED 
+(
+	[ProductID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[User]    Script Date: 10/3/2023 11:12:12 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[User](
+	[UserName] [nchar](100) NOT NULL,
+	[Name] [nvarchar](max) NULL,
+	[Email] [nvarchar](max) NULL,
+	[Phone] [nchar](13) NULL,
+	[Password] [nvarchar](max) NULL,
+	[RoleUser] [int] NULL,
+ CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
+(
+	[UserName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Category] ON 
+
+INSERT [dbo].[Category] ([CatID], [CatName]) VALUES (1, N'Thạch Anh Tóc Đen')
+INSERT [dbo].[Category] ([CatID], [CatName]) VALUES (2, N'Xà Cừ')
+INSERT [dbo].[Category] ([CatID], [CatName]) VALUES (3, N'MoonStone')
+INSERT [dbo].[Category] ([CatID], [CatName]) VALUES (4, N'Ngọc Huyết')
+INSERT [dbo].[Category] ([CatID], [CatName]) VALUES (5, N'Aquamarie')
+INSERT [dbo].[Category] ([CatID], [CatName]) VALUES (6, N'Thạch Anh Tóc vàng')
+SET IDENTITY_INSERT [dbo].[Category] OFF
+GO
+INSERT [dbo].[OrderDetail] ([OrderID], [ProductID], [Quantity], [Total], [Information]) VALUES (NULL, NULL, NULL, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Product] ON 
+
+INSERT [dbo].[Product] ([ProductID], [ProductName], [ShortDecs], [Description], [Size], [Price], [ProductPhoto], [CatID], [UnitsInStock]) VALUES (1, N'Lắc Bạc Thạch Anh Tóc Đen', N'Trang sức phong thủy là một biểu tượng độc đáo của sự hòa hợp giữa con người và tự nhiên. Những mảng đá quý, hạt cườm, và kim loại quý được chế tác thành những mẫu trang sức phong thủy đẹp mắt, mang theo một thông điệp tinh thần đặc biệt. Chúng có thể được chọn dựa trên các yếu tố như ngày tháng sinh, hoặc theo sở thích và ý nghĩa cá nhân.Mỗi một viên đá quý đều được cho là chứa trong mình năng lượng đặc biệt, có khả năng tạo lên sự cân bằng và tài vận cho người sử dụng.Chúng là một phần quan trọng của cuộc sống hàng ngày của nhiều người, đồng thời cũng là biểu tượng cho niềm tin vào sức mạnh của vũ trụ.', N'Đá thạch anh tóc đen, một loại đá quý quý hiếm, không chỉ nổi bật với vẻ đẹp tự nhiên và màu sắc huyền bí mà nó mang lại, mà còn được coi là một trong những viên đá mang trong mình sức mạnh tinh thần và tâm linh mạnh mẽ. Với màu đen đậm đà và các sắc thái bóng đen đa dạng, đá thạch anh tóc đen đã từ lâu thu hút con người với những khả năng độc đáo.  Đá thạch anh tóc đen được cho là có khả năng cân bằng và ổn định tâm trạng. Nó giúp làm dịu cảm xúc và đem lại sự bình tĩnh trong tình huống căng thẳng. Người ta thường đeo nó để giúp kiểm soát cảm xúc và tìm lại sự cân bằng bên trong. Có thể giúp kích thích tư duy sáng tạo và khả năng tư duy logic, từ đó giúp người sử dụng nắm bắt cơ hội và giải quyết vấn đề hiệu quả hơn và giúp tạo ra một vùng bảo vệ tinh thần xung quanh người sử dụng, ngăn ngừa các năng lượng tiêu cực và tạo ra một môi trường tích cực.
+', NULL, 500000, N'a1.jpg', 1, NULL)
+INSERT [dbo].[Product] ([ProductID], [ProductName], [ShortDecs], [Description], [Size], [Price], [ProductPhoto], [CatID], [UnitsInStock]) VALUES (2, N'Chuỗi Thạch Anh Tóc Đen', N'Trang sức phong thủy là một biểu tượng độc đáo của sự hòa hợp giữa con người và tự nhiên. Những mảng đá quý, hạt cườm, và kim loại quý được chế tác thành những mẫu trang sức phong thủy đẹp mắt, mang theo một thông điệp tinh thần đặc biệt. Chúng có thể được chọn dựa trên các yếu tố như ngày tháng sinh, hoặc theo sở thích và ý nghĩa cá nhân.Mỗi một viên đá quý đều được cho là chứa trong mình năng lượng đặc biệt, có khả năng tạo lên sự cân bằng và tài vận cho người sử dụng.Chúng là một phần quan trọng của cuộc sống hàng ngày của nhiều người, đồng thời cũng là biểu tượng cho niềm tin vào sức mạnh của vũ trụ.', N'Đá thạch anh tóc đen, một loại đá quý quý hiếm, không chỉ nổi bật với vẻ đẹp tự nhiên và màu sắc huyền bí mà nó mang lại, mà còn được coi là một trong những viên đá mang trong mình sức mạnh tinh thần và tâm linh mạnh mẽ. Với màu đen đậm đà và các sắc thái bóng đen đa dạng, đá thạch anh tóc đen đã từ lâu thu hút con người với những khả năng độc đáo.  Đá thạch anh tóc đen được cho là có khả năng cân bằng và ổn định tâm trạng. Nó giúp làm dịu cảm xúc và đem lại sự bình tĩnh trong tình huống căng thẳng. Người ta thường đeo nó để giúp kiểm soát cảm xúc và tìm lại sự cân bằng bên trong. Có thể giúp kích thích tư duy sáng tạo và khả năng tư duy logic, từ đó giúp người sử dụng nắm bắt cơ hội và giải quyết vấn đề hiệu quả hơn và giúp tạo ra một vùng bảo vệ tinh thần xung quanh người sử dụng, ngăn ngừa các năng lượng tiêu cực và tạo ra một môi trường tích cực.
+', NULL, 650000, N'a2.jpg', 1, NULL)
+INSERT [dbo].[Product] ([ProductID], [ProductName], [ShortDecs], [Description], [Size], [Price], [ProductPhoto], [CatID], [UnitsInStock]) VALUES (3, N'Chuỗi Xà Cừ', N'Trang sức phong thủy là một biểu tượng độc đáo của sự hòa hợp giữa con người và tự nhiên. Những mảng đá quý, hạt cườm, và kim loại quý được chế tác thành những mẫu trang sức phong thủy đẹp mắt, mang theo một thông điệp tinh thần đặc biệt. Chúng có thể được chọn dựa trên các yếu tố như ngày tháng sinh, hoặc theo sở thích và ý nghĩa cá nhân.Mỗi một viên đá quý đều được cho là chứa trong mình năng lượng đặc biệt, có khả năng tạo lên sự cân bằng và tài vận cho người sử dụng.Chúng là một phần quan trọng của cuộc sống hàng ngày của nhiều người, đồng thời cũng là biểu tượng cho niềm tin vào sức mạnh của vũ trụ.', N'Đá xà cừ, còn được gọi là thạch anh rồng, là một trong những viên đá quý vô cùng đặc biệt và quý hiếm. Được biết đến với sức mạnh tâm linh và khả năng tạo ra sự kết nối giữa con người và vũ trụ, đá xà cừ đã thu hút sự quan tâm và sự tôn vinh của con người từ hàng ngàn năm qua. Đá xà cừ thường được coi là một biểu tượng của sự bảo vệ và sức mạnh. Nó được tin rằng đá này có khả năng đánh bại các thế lực tiêu cực và tạo ra một vùng bảo vệ tinh thần xung quanh người sử dụng. Điều này giúp làm dịu lo lắng và tạo ra một tâm trạng an lành. Nó thường xuất hiện trong nghi lễ tôn vinh các thần thánh và có vai trò quan trọng trong tâm linh nhiều quốc gia và vùng lãnh thổ trên thế giới. Nó thường được sử dụng trong các vật phẩm tôn thờ và trang sức có tính tâm linh, đóng vai trò trung gian giữa con người và thế giới tâm linh. Đá xà cừ được cho là có khả năng tạo cân bằng năng lượng trong cơ thể và tâm hồn. Nó có thể giúp người sử dụng tìm lại sự ổn định và cân bằng trong cuộc sống, đặc biệt là trong những thời kỳ căng thẳng và ó khả năng tăng cường khả năng tập trung và tư duy. Nó có thể giúp người sử dụng trở nên sắc sảo hơn trong việc giải quyết vấn đề và ra quyết định quan trọng.', NULL, 550000, N'a3.jpg', 2, NULL)
+INSERT [dbo].[Product] ([ProductID], [ProductName], [ShortDecs], [Description], [Size], [Price], [ProductPhoto], [CatID], [UnitsInStock]) VALUES (4, N'Chuỗi Xà Cừ Mix Bạc', N'Trang sức phong thủy là một biểu tượng độc đáo của sự hòa hợp giữa con người và tự nhiên. Những mảng đá quý, hạt cườm, và kim loại quý được chế tác thành những mẫu trang sức phong thủy đẹp mắt, mang theo một thông điệp tinh thần đặc biệt. Chúng có thể được chọn dựa trên các yếu tố như ngày tháng sinh, hoặc theo sở thích và ý nghĩa cá nhân.Mỗi một viên đá quý đều được cho là chứa trong mình năng lượng đặc biệt, có khả năng tạo lên sự cân bằng và tài vận cho người sử dụng.Chúng là một phần quan trọng của cuộc sống hàng ngày của nhiều người, đồng thời cũng là biểu tượng cho niềm tin vào sức mạnh của vũ trụ.', N'Đá xà cừ, còn được gọi là thạch anh rồng, là một trong những viên đá quý vô cùng đặc biệt và quý hiếm. Được biết đến với sức mạnh tâm linh và khả năng tạo ra sự kết nối giữa con người và vũ trụ, đá xà cừ đã thu hút sự quan tâm và sự tôn vinh của con người từ hàng ngàn năm qua. Đá xà cừ thường được coi là một biểu tượng của sự bảo vệ và sức mạnh. Nó được tin rằng đá này có khả năng đánh bại các thế lực tiêu cực và tạo ra một vùng bảo vệ tinh thần xung quanh người sử dụng. Điều này giúp làm dịu lo lắng và tạo ra một tâm trạng an lành. Nó thường xuất hiện trong nghi lễ tôn vinh các thần thánh và có vai trò quan trọng trong tâm linh nhiều quốc gia và vùng lãnh thổ trên thế giới. Nó thường được sử dụng trong các vật phẩm tôn thờ và trang sức có tính tâm linh, đóng vai trò trung gian giữa con người và thế giới tâm linh. Đá xà cừ được cho là có khả năng tạo cân bằng năng lượng trong cơ thể và tâm hồn. Nó có thể giúp người sử dụng tìm lại sự ổn định và cân bằng trong cuộc sống, đặc biệt là trong những thời kỳ căng thẳng và ó khả năng tăng cường khả năng tập trung và tư duy. Nó có thể giúp người sử dụng trở nên sắc sảo hơn trong việc giải quyết vấn đề và ra quyết định quan trọng.', NULL, 700000, N'a4.jpg', 2, NULL)
+INSERT [dbo].[Product] ([ProductID], [ProductName], [ShortDecs], [Description], [Size], [Price], [ProductPhoto], [CatID], [UnitsInStock]) VALUES (5, N'Lắc Bạc Moonstone', N'Trang sức phong thủy là một biểu tượng độc đáo của sự hòa hợp giữa con người và tự nhiên. Những mảng đá quý, hạt cườm, và kim loại quý được chế tác thành những mẫu trang sức phong thủy đẹp mắt, mang theo một thông điệp tinh thần đặc biệt. Chúng có thể được chọn dựa trên các yếu tố như ngày tháng sinh, hoặc theo sở thích và ý nghĩa cá nhân.Mỗi một viên đá quý đều được cho là chứa trong mình năng lượng đặc biệt, có khả năng tạo lên sự cân bằng và tài vận cho người sử dụng.Chúng là một phần quan trọng của cuộc sống hàng ngày của nhiều người, đồng thời cũng là biểu tượng cho niềm tin vào sức mạnh của vũ trụ.', N'Moonstone, hoặc còn gọi là đá Ngọc trăng, là một viên đá quý vô cùng tuyệt đẹp và đầy ẩn dụ tâm linh. Với màu sắc tinh khôi và sáng bóng, nó mang theo sức mạnh và khả năng đặc biệt, làm say mê người sử dụng với những hiệu ứng tâm linh và tinh thần. Moonstone được cho là có khả năng giúp tạo cân bằng tinh thần và cảm xúc. Nó có thể giúp làm dịu cảm xúc căng thẳng và mang lại sự ổn định trong tâm trạng. Người sử dụng thường cảm nhận một cảm giác thư thái và bình yên khi tiếp xúc với đá này. Nó có thể tăng cường khả năng tư duy sáng tạo và trí tưởng tượng. Nó giúp người sử dụng thấy mở cửa trái tim và tinh thần, thúc đẩy họ khám phá ý tưởng mới và giải quyết vấn đề một cách độc đáo. Moonstone thường được coi là một biểu tượng của sự bảo vệ và may mắn. Nó có thể giúp người sử dụng tránh xa khỏi các năng lượng tiêu cực và tai họa trong cuộc sống. Điều này tạo ra một cảm giác an toàn và tin tưởng và được coi là biểu tượng của tình yêu và hạnh phúc gia đình. Nó có thể giúp tăng cường tình yêu và sự gắn kết trong mối quan hệ gia đình và tình yêu đôi.
+', NULL, 850000, N'a5.jpg', 3, NULL)
+INSERT [dbo].[Product] ([ProductID], [ProductName], [ShortDecs], [Description], [Size], [Price], [ProductPhoto], [CatID], [UnitsInStock]) VALUES (6, N'Lắc Bạc Moonstone Bốn Lá', N'Trang sức phong thủy là một biểu tượng độc đáo của sự hòa hợp giữa con người và tự nhiên. Những mảng đá quý, hạt cườm, và kim loại quý được chế tác thành những mẫu trang sức phong thủy đẹp mắt, mang theo một thông điệp tinh thần đặc biệt. Chúng có thể được chọn dựa trên các yếu tố như ngày tháng sinh, hoặc theo sở thích và ý nghĩa cá nhân.Mỗi một viên đá quý đều được cho là chứa trong mình năng lượng đặc biệt, có khả năng tạo lên sự cân bằng và tài vận cho người sử dụng.Chúng là một phần quan trọng của cuộc sống hàng ngày của nhiều người, đồng thời cũng là biểu tượng cho niềm tin vào sức mạnh của vũ trụ.', N'Moonstone, hoặc còn gọi là đá Ngọc trăng, là một viên đá quý vô cùng tuyệt đẹp và đầy ẩn dụ tâm linh. Với màu sắc tinh khôi và sáng bóng, nó mang theo sức mạnh và khả năng đặc biệt, làm say mê người sử dụng với những hiệu ứng tâm linh và tinh thần. Moonstone được cho là có khả năng giúp tạo cân bằng tinh thần và cảm xúc. Nó có thể giúp làm dịu cảm xúc căng thẳng và mang lại sự ổn định trong tâm trạng. Người sử dụng thường cảm nhận một cảm giác thư thái và bình yên khi tiếp xúc với đá này. Nó có thể tăng cường khả năng tư duy sáng tạo và trí tưởng tượng. Nó giúp người sử dụng thấy mở cửa trái tim và tinh thần, thúc đẩy họ khám phá ý tưởng mới và giải quyết vấn đề một cách độc đáo. Moonstone thường được coi là một biểu tượng của sự bảo vệ và may mắn. Nó có thể giúp người sử dụng tránh xa khỏi các năng lượng tiêu cực và tai họa trong cuộc sống. Điều này tạo ra một cảm giác an toàn và tin tưởng và được coi là biểu tượng của tình yêu và hạnh phúc gia đình. Nó có thể giúp tăng cường tình yêu và sự gắn kết trong mối quan hệ gia đình và tình yêu đôi.
+', NULL, 650000, N'a6.jpg', 3, NULL)
+INSERT [dbo].[Product] ([ProductID], [ProductName], [ShortDecs], [Description], [Size], [Price], [ProductPhoto], [CatID], [UnitsInStock]) VALUES (7, N'Lắc Bạc Ngọc Huyết', N'Trang sức phong thủy là một biểu tượng độc đáo của sự hòa hợp giữa con người và tự nhiên. Những mảng đá quý, hạt cườm, và kim loại quý được chế tác thành những mẫu trang sức phong thủy đẹp mắt, mang theo một thông điệp tinh thần đặc biệt. Chúng có thể được chọn dựa trên các yếu tố như ngày tháng sinh, hoặc theo sở thích và ý nghĩa cá nhân.Mỗi một viên đá quý đều được cho là chứa trong mình năng lượng đặc biệt, có khả năng tạo lên sự cân bằng và tài vận cho người sử dụng.Chúng là một phần quan trọng của cuộc sống hàng ngày của nhiều người, đồng thời cũng là biểu tượng cho niềm tin vào sức mạnh của vũ trụ.', N'Đá Ngọc Huyết, hay còn gọi là đá Hạt Bảo Thạch, là một viên đá quý có màu đỏ hoặc nâu đậm đà, thường xuất hiện với các mảng và vệt đen hoặc nâu đậm trên bề mặt của nó. Được tạo ra từ sự kết hợp của khoáng chất garnet và pyrope, đá Ngọc Huyết mang trong mình sức mạnh và khả năng độc đáo. Đá Ngọc Huyết thường được liên kết với sự bảo vệ và sức mạnh. Nó có khả năng đánh bại các thế lực tiêu cực và bảo vệ người sử dụng khỏi các nguy cơ và tai họa. Điều này tạo ra một cảm giác an toàn và tự tin. Nó được coi là biểu tượng của sự kiên nhẫn và sự bền bỉ. Nó có thể giúp người sử dụng duy trì động lực và kiên trì trong cuộc sống, đặc biệt trong những thời kỳ khó khăn và thách thức. Đá Ngọc Huyết được cho là có khả năng tạo cân bằng năng lượng trong cơ thể và tâm hồn. Nó giúp người sử dụng thấy ổn định tinh thần và cảm xúc, từ đó tạo ra một tâm trạng bình yên và ó thể giúp tăng cường sự tự tin và tự trọng của người sử dụng. Nó khuyến khích họ đối mặt với thách thức một cách dứt khoát và tự tin.', NULL, 500000, N'a7.jpg', 4, NULL)
+INSERT [dbo].[Product] ([ProductID], [ProductName], [ShortDecs], [Description], [Size], [Price], [ProductPhoto], [CatID], [UnitsInStock]) VALUES (8, N'Vòng Chuỗi Đơn Aquamarine', N'Trang sức phong thủy là một biểu tượng độc đáo của sự hòa hợp giữa con người và tự nhiên. Những mảng đá quý, hạt cườm, và kim loại quý được chế tác thành những mẫu trang sức phong thủy đẹp mắt, mang theo một thông điệp tinh thần đặc biệt. Chúng có thể được chọn dựa trên các yếu tố như ngày tháng sinh, hoặc theo sở thích và ý nghĩa cá nhân.Mỗi một viên đá quý đều được cho là chứa trong mình năng lượng đặc biệt, có khả năng tạo lên sự cân bằng và tài vận cho người sử dụng.Chúng là một phần quan trọng của cuộc sống hàng ngày của nhiều người, đồng thời cũng là biểu tượng cho niềm tin vào sức mạnh của vũ trụ.', N'Aquamarine, hay Cẩm thạch biển, là một viên đá quý với màu xanh biển tươi sáng và trong sáng, thường gợi nhớ tới vẻ đẹp của biển cả và lòng dũng cảm của những người thám hiểm biển khơi. Đá Aquamarine không chỉ là một viên đá quý đẹp mắt, mà còn mang trong nó sức mạnh và khả năng tinh thần độc đáo. Màu xanh biển của đá Aquamarine thường được liên kết với sự trong sáng và bình tĩnh. Nó có khả năng làm dịu tâm hồn, giúp người sử dụng thấy thư thái và an bình trong tâm trạng. Aquamarine là một biểu tượng của sức mạnh của nước biển. Nó được cho là có khả năng kết nối con người với nguồn năng lượng mạnh mẽ và sự sống phồn thịnh của đại dương. Điều này có thể giúp người sử dụng cảm thấy kết nối với tự nhiên và thế giới xung quanh mình. Đá Aquamarine thường được coi là biểu tượng của sự bảo vệ và hòa hợp. Nó có khả năng đánh thức lòng dũng cảm và tạo ra sự cân bằng giữa trí óc và tâm hồn. Điều này có thể giúp người sử dụng đối mặt với khó khăn và xử lý tình huống một cách bình tĩnh và được coi là biểu tượng của tình yêu và tình bạn. Nó có thể giúp tăng cường tình yêu gia đình và tình cảm trong các mối quan hệ. Nó cũng thúc đẩy sự hiểu biết và hòa giải trong tình bạn.', NULL, 700000, N'a8.jpg', 5, NULL)
+INSERT [dbo].[Product] ([ProductID], [ProductName], [ShortDecs], [Description], [Size], [Price], [ProductPhoto], [CatID], [UnitsInStock]) VALUES (9, N'Lắc Bạc Thạch Anh Tóc Vàng', N'Trang sức phong thủy là một biểu tượng độc đáo của sự hòa hợp giữa con người và tự nhiên. Những mảng đá quý, hạt cườm, và kim loại quý được chế tác thành những mẫu trang sức phong thủy đẹp mắt, mang theo một thông điệp tinh thần đặc biệt. Chúng có thể được chọn dựa trên các yếu tố như ngày tháng sinh, hoặc theo sở thích và ý nghĩa cá nhân.Mỗi một viên đá quý đều được cho là chứa trong mình năng lượng đặc biệt, có khả năng tạo lên sự cân bằng và tài vận cho người sử dụng.Chúng là một phần quan trọng của cuộc sống hàng ngày của nhiều người, đồng thời cũng là biểu tượng cho niềm tin vào sức mạnh của vũ trụ.', N'Đá thạch anh tóc vàng, một viên đá quý có màu vàng ấm áp và lấp lánh, là một trong những viên đá quý phổ biến và được ưa chuộng trong trang sức và tâm linh. Đá thạch anh tóc vàng không chỉ có vẻ đẹp quyến rũ mà còn mang trong mình sức mạnh và khả năng tinh thần đặc biệt. Đá thạch anh tóc vàng được cho là có khả năng tăng cường năng lượng tích cực và sự lạc quan. Nó giúp người sử dụng cảm thấy nhiệt huyết và đầy sức sống, từ đó tạo ra một tâm trạng lạc quan và tự tin. Đá thạch anh tóc vàng có khả năng tạo cân bằng tinh thần và xóa bỏ căng thẳng. Nó giúp làm dịu tâm hồn và tạo ra sự bình yên trong tâm trí. Nó hường được sử dụng trong các nghi lễ tôn vinh thần thánh và có vai trò quan trọng trong tâm linh nhiều quốc gia và vùng lãnh thổ trên thế giới. Nó được coi là một biểu tượng của sự kết nối với thế giới tâm linh và tạo động lực cho cuộc sống tinh thần. Đá thạch anh tóc vàng thường được liên kết với tình yêu và hạnh phúc. Nó có thể tăng cường tình yêu và sự gắn kết trong các mối quan hệ tình cảm và gia đình.
+', NULL, 800000, N'a9.jpg', 6, NULL)
+SET IDENTITY_INSERT [dbo].[Product] OFF
+GO
+INSERT [dbo].[User] ([UserName], [Name], [Email], [Phone], [Password], [RoleUser]) VALUES (N'aaa                                                                                                 ', N'duongdz', N'swu@jj.bb', N'14578910     ', N'222', 0)
+INSERT [dbo].[User] ([UserName], [Name], [Email], [Phone], [Password], [RoleUser]) VALUES (N'admin                                                                                               ', N'NBD', N'nbduongsv2dz@gmail.com', N'0866825756   ', N'2003', 1)
+INSERT [dbo].[User] ([UserName], [Name], [Email], [Phone], [Password], [RoleUser]) VALUES (N'test                                                                                                ', N'duong', N'nbd@gmail.com', N'099999       ', N'222', 0)
+GO
+ALTER TABLE [dbo].[Customer]  WITH CHECK ADD  CONSTRAINT [FK_Customer_User] FOREIGN KEY([UserName])
+REFERENCES [dbo].[User] ([UserName])
+GO
+ALTER TABLE [dbo].[Customer] CHECK CONSTRAINT [FK_Customer_User]
+GO
+ALTER TABLE [dbo].[Order]  WITH CHECK ADD  CONSTRAINT [FK_Order_Customer] FOREIGN KEY([CustomerID])
+REFERENCES [dbo].[Customer] ([CustomerID])
+GO
+ALTER TABLE [dbo].[Order] CHECK CONSTRAINT [FK_Order_Customer]
+GO
+ALTER TABLE [dbo].[OrderDetail]  WITH CHECK ADD  CONSTRAINT [FK_OrderDetail_Order] FOREIGN KEY([OrderID])
+REFERENCES [dbo].[Order] ([OrderID])
+GO
+ALTER TABLE [dbo].[OrderDetail] CHECK CONSTRAINT [FK_OrderDetail_Order]
+GO
+ALTER TABLE [dbo].[OrderDetail]  WITH CHECK ADD  CONSTRAINT [FK_OrderDetail_Product] FOREIGN KEY([ProductID])
+REFERENCES [dbo].[Product] ([ProductID])
+GO
+ALTER TABLE [dbo].[OrderDetail] CHECK CONSTRAINT [FK_OrderDetail_Product]
+GO
+ALTER TABLE [dbo].[Product]  WITH CHECK ADD  CONSTRAINT [FK_Product_Category] FOREIGN KEY([CatID])
+REFERENCES [dbo].[Category] ([CatID])
+GO
+ALTER TABLE [dbo].[Product] CHECK CONSTRAINT [FK_Product_Category]
+GO
